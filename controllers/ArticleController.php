@@ -7,7 +7,7 @@ require(__DIR__ . "/../services/ResponseService.php");
 
 class ArticleController{
     
-    public function getAllArticles(){
+    public function getArticles(){
         global $mysqli;
 
         if(!isset($_GET["id"])){
@@ -18,13 +18,55 @@ class ArticleController{
         }
 
         $id = $_GET["id"];
-        $article = Article::find($mysqli, $id)->toArray();
+        $article = Article::find($mysqli, $id);
+        $article = $article?->toArray();
         echo ResponseService::response($article);
         return;
     }
 
-    public function deleteAllArticles(){
-        die("Deleting...");
+    public static function seedArticle($data){
+        global $mysqli;
+        echo Article::create($mysqli, $data);
+    }
+
+    public static function insertArticle(){
+        global $mysqli;
+        $data = ArticleService::getArticleFromURL();
+
+        echo Article::create($mysqli, $data);
+    }
+
+    public static function deleteArticles(){
+        global $mysqli;
+        $data = ArticleService::getArticleFromURL();
+        
+        if(!isset($data["id"])){
+            echo Article::TOTAL_EXTERMINATION($mysqli);
+            return;
+        }
+        $id = $data["id"];
+        echo Article::deleteById($mysqli, $id);
+    }
+
+    public static function updateArticle(){
+        global $mysqli;
+        $data = ArticleService::getArticleFromURL();
+
+        echo Article::update($mysqli, $data);
+    }
+
+    public static function getArticleByCategoryId(){
+        global $mysqli;
+        $id = $_GET["id"];
+
+        $articles = Article::getByCategoryId($mysqli, $id);
+        $resp = [];
+        foreach($articles as $a){
+            $resp[] = $a->toArray();
+        }
+
+        echo ResponseService::response($resp);
+        return;
     }
 }
 

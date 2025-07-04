@@ -32,8 +32,8 @@ $apis = [
     '/articles'         => ['controller' => 'ArticleController', 'method' => 'getArticles'],
     '/create_article'         => ['controller' => 'ArticleController', 'method' => 'insertArticle'],
     '/update_article'         => ['controller' => 'ArticleController', 'method' => 'updateArticle'],
-    '/delete_article'         => ['controller' => 'ArticleController', 'method' => 'deleteArticle'],
-    '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteAllArticles'],
+    '/delete_article'         => ['controller' => 'ArticleController', 'method' => 'deleteArticles'],
+    '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteArticles'],
     '/article_by_category'         => ['controller' => 'ArticleController', 'method' => 'getArticleByCategoryId'],
 
     '/category'         => ['controller' => 'CategoryController', 'method' => 'getCategories'],

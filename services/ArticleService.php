@@ -12,6 +12,10 @@ class ArticleService {
         return $results;
     }
 
-
+    public static function getArticleFromURL(){
+        $raw = file_get_contents("php://input");
+        $json = json_decode($raw, true);
+        return $json["article"] ?? [];
+    }
 
 }

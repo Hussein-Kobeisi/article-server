@@ -18,7 +18,8 @@ class CategoryController{
         }
 
         $id = $_GET["id"];
-        $category = Category::find($mysqli, $id)->toArray();
+        $category = Category::find($mysqli, $id);
+        $category = $category?->toArray();
         echo ResponseService::response($category);
         return;
     }

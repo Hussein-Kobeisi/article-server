@@ -36,7 +36,7 @@ class Category extends Model{
         //get catID from pivotTable
         $sql = sprintf("Select * from %s WHERE %s = ?", 
                         static::$pivotTable, 
-                        static::$primary_key);
+                        static::$articleId);
 
         $query = $mysqli->prepare($sql);
         $query->bind_param("i", $id);
