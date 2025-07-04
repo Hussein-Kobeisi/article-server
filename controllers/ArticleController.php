@@ -13,13 +13,13 @@ class ArticleController{
         if(!isset($_GET["id"])){
             $articles = Article::all($mysqli);
             $articles_array = ArticleService::articlesToArray($articles); 
-            echo ResponseService::success_response($articles_array);
+            echo ResponseService::response($articles_array);
             return;
         }
 
         $id = $_GET["id"];
         $article = Article::find($mysqli, $id)->toArray();
-        echo ResponseService::success_response($article);
+        echo ResponseService::response($article);
         return;
     }
 

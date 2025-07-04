@@ -4,7 +4,7 @@
 //----------------------------------------------------------
 // Define your base directory 
 $base_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$request = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 // Remove the base directory from the request if present
 if (strpos($request, $base_dir) === 0) {
@@ -28,8 +28,21 @@ if ($request == '') {
 //It's an key-value array where the value is an key-value array
 //----------------------------------------------------------
 $apis = [
-    '/articles'         => ['controller' => 'ArticleController', 'method' => 'getAllArticles'],
+    '/article'         => ['controller' => 'ArticleController', 'method' => 'getArticles'],
+    '/articles'         => ['controller' => 'ArticleController', 'method' => 'getArticles'],
+    '/create_article'         => ['controller' => 'ArticleController', 'method' => 'insertArticle'],
+    '/update_article'         => ['controller' => 'ArticleController', 'method' => 'updateArticle'],
+    '/delete_article'         => ['controller' => 'ArticleController', 'method' => 'deleteArticle'],
     '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteAllArticles'],
+    '/article_by_category'         => ['controller' => 'ArticleController', 'method' => 'getArticleByCategoryId'],
+
+    '/category'         => ['controller' => 'CategoryController', 'method' => 'getCategories'],
+    '/categories'         => ['controller' => 'CategoryController', 'method' => 'getCategories'],
+    '/create_category'         => ['controller' => 'CategoryController', 'method' => 'insertCategory'],
+    '/update_category'         => ['controller' => 'CategoryController', 'method' => 'updateCategory'],
+    '/delete_category'         => ['controller' => 'CategoryController', 'method' => 'deleteCategories'],
+    '/delete_categories'         => ['controller' => 'CategoryController', 'method' => 'deleteCategories'],
+    '/category_by_article'         => ['controller' => 'CategoryController', 'method' => 'getCategoryByArticleId'],
 
     '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
